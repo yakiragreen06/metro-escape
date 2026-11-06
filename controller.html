@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#231d45">
+  <title>Metro Escape controller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bungee&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="controller">
+  <div class="c-wrap">
+    <div class="c-head">
+      <span class="line-badge" aria-hidden="true">M</span>
+      <div class="link-status"><span class="dot" id="link-dot"></span><span id="link-text">Not connected</span></div>
+    </div>
+
+    <!-- Step 1: join a screen -->
+    <section id="join-view" class="c-join" hidden>
+      <h2 style="margin:0 0 8px">Join a game</h2>
+      <p class="hint">Type the 4-letter code shown on the big screen.</p>
+      <div class="c-row" style="margin-top:12px">
+        <input id="code-input" maxlength="4" autocomplete="off" autocapitalize="characters" aria-label="Room code">
+        <button class="primary" id="join-btn" style="width:100%">Connect</button>
+      </div>
+    </section>
+
+    <!-- Step 2: play -->
+    <section id="play-view" hidden>
+      <div class="c-wrap">
+        <div class="gesture-light" id="light" aria-live="polite">Ready</div>
+
+        <button class="primary" id="motion-btn">Turn on motion</button>
+
+        <div class="seg" role="group" aria-label="Control style">
+          <button data-mode="body" aria-pressed="true">Body</button>
+          <button data-mode="tilt" aria-pressed="false">Tilt</button>
+          <button data-mode="swipe" aria-pressed="false">Swipe</button>
+        </div>
+
+        <p class="hint" id="mode-help"></p>
+
+        <div class="swipe-pad" id="swipe-pad" hidden>Swipe here: left, right, up to jump, down to duck</div>
+
+        <div class="meters" id="meters">
+          <span>Side</span><div class="meter"><b style="left:25%"></b><b style="left:75%"></b><i id="m-side"></i></div>
+          <span>Up/down</span><div class="meter"><b style="left:25%"></b><b style="left:75%"></b><i id="m-vert"></i></div>
+        </div>
+
+        <label class="slider">Sensitivity
+          <input type="range" id="sens" min="0.5" max="2" step="0.1" value="1">
+        </label>
+
+        <div class="c-row">
+          <label class="check"><input type="checkbox" id="swap"> Swap left and right</label>
+        </div>
+
+        <div class="c-row">
+          <button class="secondary" id="calib-btn" style="flex:1">Recalibrate</button>
+          <button class="secondary" id="start-btn" style="flex:1">Start run</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/controller.js"></script>
+</body>
+</html>

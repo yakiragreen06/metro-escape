@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Metro Escape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bungee&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="game-canvas"></canvas>
+  <div class="siren-flash" id="siren"></div>
+
+  <div class="hud" id="hud">
+    <div>
+      <div class="big-num" id="score">0</div>
+      <div class="small"><span id="coins">0</span> coins</div>
+    </div>
+    <div class="link-status"><span class="dot" id="link-dot"></span><span id="link-text">No controller</span></div>
+  </div>
+
+  <div class="last-move" id="last-move"></div>
+  <div class="countdown" id="countdown" hidden></div>
+
+  <!-- Start screen -->
+  <section class="overlay" id="start-screen">
+    <div class="panel">
+      <div class="line-sign">
+        <span class="line-badge" aria-hidden="true">M</span>
+        <h1>Metro<br>Escape</h1>
+      </div>
+      <p>The police are on your tail. Dodge trains, jump barriers and duck under signals by moving your whole body.</p>
+
+      <div class="join">
+        <div id="qr" aria-label="QR code for the controller link"></div>
+        <div>
+          <div>Scan with your phone to use it as the controller</div>
+          <div class="room-code" id="room-code">····</div>
+          <small id="controller-url"></small>
+        </div>
+      </div>
+
+      <dl class="moves">
+        <dt>Step left / right</dt><dd>Change track</dd>
+        <dt>Jump</dt><dd>Clear low barriers</dd>
+        <dt>Crouch</dt><dd>Slide under signal arms</dd>
+      </dl>
+
+      <button class="primary" id="start-btn">Start running</button>
+      <p class="hint" style="margin-top:14px">No phone? Use the arrow keys and Space.</p>
+    </div>
+  </section>
+
+  <!-- Game over screen -->
+  <section class="overlay" id="over-screen" hidden>
+    <div class="panel result">
+      <h2>Caught!</h2>
+      <div class="big-num" id="final-score">0</div>
+      <p id="final-detail"></p>
+      <p id="best-line"></p>
+      <button class="primary" id="restart-btn">Run again</button>
+      <p class="hint" style="margin-top:14px">Or jump to run again.</p>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/link-host.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
